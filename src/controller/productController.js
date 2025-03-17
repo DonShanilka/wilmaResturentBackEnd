@@ -9,4 +9,10 @@ const createProduct = async (req, res) => {
   }
 };
 
+const getAllProduct = async (req, res) => {
+  try {
+    const product = await productService.getAllProduct();
+  }
+}
+
 module.exports = { createProduct };
