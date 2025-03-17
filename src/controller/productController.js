@@ -12,8 +12,9 @@ const createProduct = async (req, res) => {
 const getAllProduct = async (req, res) => {
   try {
     const product = await productService.getAllProduct();
+    console.log(product);
     res.status(200).json(product);
-  } catch (eror) {
+  } catch (error) {
     res.status(400).json({error: error.message});
   }
 }

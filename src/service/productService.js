@@ -7,7 +7,7 @@ const createProduct = async (productData) => {
 
 const getAllProduct = async () => {
   // console.log(productData);
-  return await Product.findAll();
+  return await Product.find();
 }
 
-module.exports = { createProduct };
+module.exports = { createProduct, getAllProduct };
