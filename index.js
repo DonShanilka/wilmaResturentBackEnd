@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const Product = require("./src/models/productModel");
 
 const app = express();
 
@@ -11,6 +12,15 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send("Hello form Node API")
+});
+
+app.post('/api/products', async (req, res) => {
+  try {
+    const products = await Product.create(req.body);
+    res.status(200).json(products);
+  } catch(error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 mongoose
