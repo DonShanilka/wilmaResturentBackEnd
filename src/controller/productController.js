@@ -20,8 +20,9 @@ const getAllProduct = async (req, res) => {
 };
 
 const getProductById = async (req, res) => {
+  const { id } = req.params;
   try {
-    const product = await productService.getProductById(req.params.id);
+    const product = await productService.getProductById(id);
     console.log(product);
     res.status(200).json(product);
   } catch (error) {
