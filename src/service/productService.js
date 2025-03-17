@@ -6,8 +6,11 @@ const createProduct = async (productData) => {
 };
 
 const getAllProduct = async () => {
-  // console.log(productData);
   return await Product.find();
 }
 
-module.exports = { createProduct, getAllProduct };
+const getProductById = async (id) => {
+  return await Product.findById(id);
+}
+
+module.exports = { createProduct, getAllProduct, getProductById };
