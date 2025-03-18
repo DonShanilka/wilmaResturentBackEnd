@@ -1,4 +1,4 @@
-const productService = require('../service/productService');
+const productService = require("../service/productService");
 
 const createProduct = async (req, res) => {
   try {
@@ -16,10 +16,9 @@ const updateProduct = async (req, res) => {
     const product = await productService.updateProduct(id, req.body);
     res.status(200).json(product);
   } catch (error) {
-    res.status(400).json({error: error.message});
+    res.status(400).json({ error: error.message });
   }
-
-}
+};
 
 const getAllProduct = async (req, res) => {
   try {
@@ -27,7 +26,7 @@ const getAllProduct = async (req, res) => {
     console.log(product);
     res.status(200).json(product);
   } catch (error) {
-    res.status(400).json({error: error.message});
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -38,8 +37,13 @@ const getProductById = async (req, res) => {
     console.log(product);
     res.status(200).json(product);
   } catch (error) {
-    res.status(400).json({error: error.message});
+    res.status(400).json({ error: error.message });
   }
-}
+};
 
-module.exports = { createProduct, getAllProduct, getProductById, updateProduct};
+module.exports = {
+  createProduct,
+  getAllProduct,
+  getProductById,
+  updateProduct,
+};

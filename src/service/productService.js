@@ -17,4 +17,4 @@ const getProductById = async (id) => {
   return await Product.findById(id);
 }
 
-module.exports = { createProduct, getAllProduct, getProductById };
+module.exports = { createProduct, getAllProduct, getProductById ,updateProduct};
