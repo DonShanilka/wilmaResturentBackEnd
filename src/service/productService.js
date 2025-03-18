@@ -5,6 +5,10 @@ const createProduct = async (productData) => {
   return await Product.create(productData);
 };
 
+const updateProduct = async (id, productData) => {
+  return await Product.findByIdAndUpdate(id, productData, { new: true });
+};
+
 const getAllProduct = async () => {
   return await Product.find();
 }
