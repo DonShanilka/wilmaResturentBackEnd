@@ -9,6 +9,18 @@ const createProduct = async (req, res) => {
   }
 };
 
+const updateProduct = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const product = await productService.updateProduct(id, req.body);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json({error: error.message});
+  }
+
+}
+
 const getAllProduct = async (req, res) => {
   try {
     const product = await productService.getAllProduct();
@@ -30,4 +42,4 @@ const getProductById = async (req, res) => {
   }
 }
 
-module.exports = { createProduct, getAllProduct, getProductById };
+module.exports = { createProduct, getAllProduct, getProductById, updateProduct};
