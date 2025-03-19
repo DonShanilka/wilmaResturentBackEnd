@@ -17,3 +17,7 @@ const deleteCustomer = async (id) => {
 const getAllCustomers = async () => {
   return await Customer.find();
 }
+
+const getCustomerById = async (id) => {
+  return await Customer.findById(id); 
+}
