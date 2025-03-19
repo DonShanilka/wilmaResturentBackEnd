@@ -21,3 +21,5 @@ const getAllCustomers = async () => {
 const getCustomerById = async (id) => {
   return await Customer.findById(id); 
 }
+
+module.exports = {addCustomer, updateCustomer, deleteCustomer, getAllCustomers, getCustomerById};
