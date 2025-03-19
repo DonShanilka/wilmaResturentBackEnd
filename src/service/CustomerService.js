@@ -13,3 +13,7 @@ const updateCustomer = async (id, customerData) => {
 const deleteCustomer = async (id) => {
   return await Customer.findByIdAndDelete(id);
 };
+
+const getAllCustomers = async () => {
+  return await Customer.find();
+}
