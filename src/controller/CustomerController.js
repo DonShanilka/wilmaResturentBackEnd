@@ -40,3 +40,10 @@ const getAllCustomers = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 }
+
+module.exports = {
+  addCustomer,
+  getAllCustomers,
+  updateCustomer,
+  deleteCustomer
+}
