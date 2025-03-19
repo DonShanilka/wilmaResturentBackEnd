@@ -30,3 +30,13 @@ const deleteCustomer = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 }
+
+const getAllCustomers = async (req, res) => {
+  try {
+    const customers = await CustomerService.getAllCustomers();
+    console.log(customers);
+    res.status(200).json(customers);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
