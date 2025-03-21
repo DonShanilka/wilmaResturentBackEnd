@@ -1,5 +1,9 @@
-const Oder = require('../model/Order');
+const Order = require('../model/Order');
 
 const placeOrder = async (orderData) => {
-  return await Oder.create(orderData);
+  return await Order.create(orderData);
 }
+
+const getAllOrders = async () => {
+  return await Order.find();
+} 
