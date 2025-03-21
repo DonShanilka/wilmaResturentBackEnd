@@ -11,3 +11,5 @@ const getAllOrders = async () => {
 const getOrderById = async (id) => {
   return await Order.findById(id);     
 }
+
+module.exports = { placeOrder, getAllOrders, getOrderById };
