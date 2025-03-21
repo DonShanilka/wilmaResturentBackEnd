@@ -7,3 +7,7 @@ const placeOrder = async (orderData) => {
 const getAllOrders = async () => {
   return await Order.find();
 } 
+
+const getOrderById = async (id) => {
+  return await Order.findById(id);     
+}
