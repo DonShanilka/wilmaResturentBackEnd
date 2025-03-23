@@ -1,7 +1,7 @@
 const Customer = require('../models/CustomerModel');  
 
 const addCustomer = async (customerData) => {
-  console.log(customerData);
+  console.log("Customer Service :",customerData);
   return await Customer.create(customerData);
 };
 

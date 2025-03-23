@@ -3,12 +3,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const productRoutes = require('./src/routes/productRoutes');
+const customerRoutes = require('./src/routes/customerRoutes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use('/api', productRoutes);
+app.use('/api', customerRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
