@@ -1,8 +1,19 @@
-const Customer = require('../models/CustomerModel');  
+const Customer = require('../models/CustomerModel');
 
 const addCustomer = async (customerData) => {
   console.log("Customer Service :",customerData);
-  return await Customer.create(customerData);
+  try{
+    const added = new Customer({
+      id: customerData.customer_id,
+      name: customerData.customer_name,
+      address: customerData.customer_address,
+      mobile: customerData.mobile
+    })
+    const saved = await Customer.create(added);
+    return saved;
+  }catch(error){
+    console.log("Error :",error);
+  }
 };
 
 const updateCustomer = async (id, customerData) => {
@@ -15,8 +26,14 @@ const deleteCustomer = async (id) => {
 };
 
 const getAllCustomers = async () => {
-  return await Customer.find();
-}
+  try {
+    console.log("Service GetAllCustomers Called");
+    return await Customer.find();
+  } catch (error) {
+    console.error("Error in CustomerService:", error);
+    throw new Error("Failed to fetch customers");
+  }
+};
 
 const getCustomerById = async (id) => {
   return await Customer.findById(id); 

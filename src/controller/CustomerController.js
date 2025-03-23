@@ -1,8 +1,10 @@
 const CustomerService = require('../service/CustomerService');
 
 const addCustomer = async (req, res) => {
+  const c = req.body;
+  console.log(c)
   try {
-    const customer = await CustomerService.addCustomer(req.body);
+    const customer = await CustomerService.addCustomer(c);
     console.log(customer);
     res.status(200).json(customer);
   } catch (error) {
@@ -34,13 +36,15 @@ const deleteCustomer = async (req, res) => {
 
 const getAllCustomers = async (req, res) => {
   try {
+    console.log("Controller: getAllCustomers Called");
     const customers = await CustomerService.getAllCustomers();
-    console.log(customers);
+    console.log("Customers Fetched:", customers);
     res.status(200).json(customers);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error("Error in Controller:", error);
+    res.status(500).json({ error: error.message });
   }
-}
+};
 
 module.exports = {
   addCustomer,
