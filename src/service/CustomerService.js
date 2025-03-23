@@ -17,8 +17,20 @@ const addCustomer = async (customerData) => {
 };
 
 const updateCustomer = async (id, customerData) => {
-  console.log(id, customerData);
-  return await Customer.findByIdAndUpdate(id, customerData, {new: true});
+  try {
+    console.log("Updating Customer:", id, customerData);
+    
+    const updatedCustomer = await Customer.findByIdAndUpdate(id, customerData, { new: true });
+
+    if (!updatedCustomer) {
+      throw new Error("Customer not found");
+    }
+
+    return updatedCustomer;
+  } catch (error) {
+    console.error("Error in CustomerService update:", error);
+    throw new Error("Failed to update customer");
+  }
 };
 
 const deleteCustomer = async (id) => {
