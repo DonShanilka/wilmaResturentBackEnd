@@ -21,7 +21,12 @@ const placeOrder = async (orderData) => {
 }
 
 const getAllOrders = async () => {
-  return await Order.find();
+  try {
+    return await Order.find();
+  } catch (error) {
+    console.error("Error in OrderService:", error);
+    throw new Error("Failed to fetch orders");
+  }
 } 
 
 const getOrderById = async (id) => {
