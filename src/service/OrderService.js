@@ -1,9 +1,10 @@
 const Order = require('../models/ordeModel');
+const mongoose = require("mongoose");
 
 const placeOrder = async (orderData) => {
   try {
     const added = new Order({
-      id: orderData.orderId,
+      orderId: orderData.orderId,
       orderDate: orderData.orderDate,
       customerId: orderData.customerId,
       total: orderData.total,
@@ -30,7 +31,19 @@ const getAllOrders = async () => {
 } 
 
 const getOrderById = async (id) => {
-  return await Order.findById(id);     
+  try {
+ 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error('Invalid ID format');
+    }
+
+    const order = await Order.findById(id);  
+
+    return order; 
+  } catch (error) {
+    console.error('Error fetching customer:', error);
+    throw new Error('Failed to fetch customer in getCustomerById');
+  }   
 }
 
 module.exports = { placeOrder, getAllOrders, getOrderById };
