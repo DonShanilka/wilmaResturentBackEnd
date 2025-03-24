@@ -50,13 +50,19 @@ const getAllProduct = async (req, res) => {
 };
 
 const getProductById = async (req, res) => {
-  const { id } = req.params;
   try {
-    const product = await productService.getProductById(id);
-    console.log(product);
-    res.status(200).json(product);
+    const itemId = req.params.id;
+    console.log('Received ID:', itemId); // Log the ID to verify it's correct
+    const item = await productService.getProductById(itemId);
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+    res.json(item);
+    console.log('Item:', item);
+    // return item;
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error('Error fetching item:', error);
+    res.status(500).send('Server error');
   }
 };
 

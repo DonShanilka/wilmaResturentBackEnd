@@ -59,13 +59,12 @@ const getAllProduct = async () => {
 
 const getProductById = async (id) => {
   try {
-    
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new Error('Invalid ID format');
     }
 
-    const item = await Product.findById(id);
-    return item; 
+    const product = await Product.findById(id);
+    return product; 
   } catch (error) {
     console.error('Error fetching Item :', error);
     throw new Error('Failed to fetch item in getItemById');
