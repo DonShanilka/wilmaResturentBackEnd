@@ -16,12 +16,6 @@ const ProductSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-
-    description: {
-      type: String,
-      required: [true, "Please Enter Product Description"],
-    },
-
     quantity: {
       type: Number,
       required: true,

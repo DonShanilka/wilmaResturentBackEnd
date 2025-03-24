@@ -13,17 +13,17 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const {id} = req.params;
-    const customerData = req.body;
+    const productData = req.body;
 
-    const updateCustomer = await productService.updateProduct(id, customerData);
+    const updateProduct = await productService.updateProduct(id, productData);
 
-    if (!updateCustomer) {
+    if (!updateProduct) {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    res.status(200).json(product);
+    res.status(200).json(updateProduct);
   } catch (error) {
-    onsole.error("Error updating Product:", error);
+    console.error("Error updating Product:", error);
     res.status(400).json({ error: error.message });
   }
 };
