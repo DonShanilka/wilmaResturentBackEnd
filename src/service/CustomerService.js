@@ -59,7 +59,19 @@ const getAllCustomers = async () => {
 };
 
 const getCustomerById = async (id) => {
-  return await Customer.findById(id); 
+  try {
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error('Invalid ID format');
+    }
+
+    const customer = await Customer.findById(id);
+
+    return customer; 
+  } catch (error) {
+    console.error('Error fetching customer:', error);
+    throw new Error('Failed to fetch customer in getCustomerById');
+  }
 }
 
 module.exports = {addCustomer, updateCustomer, deleteCustomer, getAllCustomers, getCustomerById};

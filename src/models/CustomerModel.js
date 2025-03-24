@@ -1,26 +1,29 @@
-const mongoos = require('mongoose');
+const mongoos = require("mongoose");
 
-const CustomerSchema = mongoos.Schema({
-  id: {
-    type: String,
-    required: [true, "Please Enter Customer ID"]
+const CustomerSchema = mongoos.Schema(
+  {
+    _id: mongoos.Schema.Types.ObjectId,
+    id: {
+      type: String,
+      required: [true, "Please Enter Customer ID"],
+    },
+    name: {
+      type: String,
+      required: [true, "Please Enter Customer Name"],
+    },
+    address: {
+      type: String,
+      required: [true, "Please Enter Customer Address"],
+    },
+    mobile: {
+      type: Number,
+      required: [true, "Please Enter Customer Mobile Number"],
+    },
   },
-  name: {
-    type: String,
-    required: [true, "Please Enter Customer Name"]
-  },
-  address: {
-    type: String,
-    required: [true, "Please Enter Customer Address"]
-  },
-  mobile: {
-    type: Number,
-    required: [true, "Please Enter Customer Mobile Number"]
+  {
+    timestamps: true,
   }
-},
-{
-  timestamps: true,
-})
+);
 
-const Customer = mongoos.model('Customer', CustomerSchema);
+const Customer = mongoos.model("Customer", CustomerSchema);
 module.exports = Customer;

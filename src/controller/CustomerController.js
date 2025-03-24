@@ -54,9 +54,27 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
+const getCustomerById = async (req, res) => {
+  const customerId = req.params.id; 
+  try {
+    console.log("Controller: getCustomerById Called", customerId); 
+    const customer = await CustomerService.getCustomerById(customerId); 
+    if (customer) {
+      res.json({ name: customer.name });
+    } else {
+      res.status(404).send('Customer not found');
+    }
+  } catch (error) {
+    console.error('Error fetching customer details:', error);
+    res.status(500).send('Server error');
+  }
+};
+
+
 module.exports = {
   addCustomer,
   getAllCustomers,
   updateCustomer,
-  deleteCustomer
+  deleteCustomer,
+  getCustomerById
 }

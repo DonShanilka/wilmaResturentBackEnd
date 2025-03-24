@@ -1,4 +1,4 @@
-const Order = require('../model/Order');
+const Order = require('../models/ordeModel');
 
 const placeOrder = async (orderData) => {
   return await Order.create(orderData);
