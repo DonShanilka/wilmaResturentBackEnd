@@ -15,12 +15,32 @@ const createProduct = async (productData) => {
     return saved;
   } catch (error) {
     console.log("Error :", error);
+    throw new Error("Failed to Save product");
   }
-  return await Product.create(productData);
 };
 
 const updateProduct = async (id, productData) => {
-  return await Product.findByIdAndUpdate(id, productData, { new: true });
+  try {
+    console.log("Updateting Product in Service:", id, productData);
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error("Invalid Product ID");
+    }
+
+    const updateProduct = await Product.findByIdAndUpdate(
+      id, 
+      {$set: productData}, 
+      {new: true, runValidators: true}
+    );
+
+    if(!updateProduct) {
+      throw new Error("Product not found");
+    }
+    return updateProduct;
+  } catch (error) {
+    console.log("Error :", error);
+    throw new Error("Failed to update product");
+  }
 };
 
 const deleteProduct = async (id) => {
