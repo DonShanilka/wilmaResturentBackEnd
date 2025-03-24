@@ -1,4 +1,6 @@
 const Customer = require('../models/CustomerModel');
+const mongoose = require("mongoose");
+
 
 const addCustomer = async (customerData) => {
   console.log("Customer Service :",customerData);
@@ -18,9 +20,18 @@ const addCustomer = async (customerData) => {
 
 const updateCustomer = async (id, customerData) => {
   try {
-    console.log("Updating Customer:", id, customerData);
-    
-    const updatedCustomer = await Customer.findByIdAndUpdate(id, customerData, { new: true });
+    console.log("Updating Customer in Service:", id, customerData);
+
+    // Ensure the 'id' is a valid ObjectId string
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error("Invalid customer ID");
+    }
+
+    const updatedCustomer = await Customer.findByIdAndUpdate(
+      id,
+      { $set: customerData }, // Use $set to specify fields to update
+      { new: true, runValidators: true } // 'new' returns the updated doc, 'runValidators' applies schema validations
+    );
 
     if (!updatedCustomer) {
       throw new Error("Customer not found");

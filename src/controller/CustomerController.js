@@ -14,20 +14,21 @@ const addCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   try {
-    const { id } = req.params; 
-    const customerData = req.body;
-
-    const updatedCustomer = await CustomerService.updateCustomer(id, customerData);
-    
-    if (!updatedCustomer) {
-      return res.status(404).json({ message: "Customer not found" });
+      console.log("Controller: updateCustomer Called");
+      const { id } = req.params;  // Ensure you're extracting the ID from the URL params
+      const customerData = req.body; // Customer data from the request body
+  
+      const updatedCustomer = await CustomerService.updateCustomer(id, customerData);
+  
+      if (!updatedCustomer) {
+        return res.status(404).json({ error: "Customer not found" });
+      }
+  
+      res.status(200).json(updatedCustomer);
+    } catch (error) {
+      console.error("Error updating customer:", error);
+      res.status(500).json({ error: "Failed to update customer" });
     }
-
-    res.status(200).json({ message: "Customer updated successfully", updatedCustomer });
-  } catch (error) {
-    console.error("Error updating customer:", error);
-    res.status(500).json({ error: "Failed to update customer" });
-  }
 }
 
 const deleteCustomer = async (req, res) => {

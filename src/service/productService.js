@@ -1,7 +1,21 @@
 const Product = require('../models/productModel');
+const mongoose = require("mongoose");
 
 const createProduct = async (productData) => {
-  console.log(productData);
+  console.log("Product Service :", productData  );
+  try {
+    const added = new Product({
+      itemId: productData.itemId,
+      name: productData.name,
+      price: productData.price,
+      description: productData.description,
+      quantity: productData.quantity
+    })
+    const saved = await Product.create(added);
+    return saved;
+  } catch (error) {
+    console.log("Error :", error);
+  }
   return await Product.create(productData);
 };
 
