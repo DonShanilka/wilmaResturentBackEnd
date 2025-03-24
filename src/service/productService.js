@@ -48,7 +48,13 @@ const deleteProduct = async (id) => {
 };
 
 const getAllProduct = async () => {
-  return await Product.find();
+  try {
+    console.log("Service GetAllProduct Called");
+    return await Product.find();
+  } catch (error) {
+    console.error("Error in ProductService:", error);
+    throw new Error("Failed to fetch product");
+  }
 };
 
 const getProductById = async (id) => {
