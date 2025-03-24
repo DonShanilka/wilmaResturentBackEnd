@@ -2,7 +2,7 @@ const mongoos = require("mongoose");
 
 const CustomerSchema = mongoos.Schema(
   {
-    _id: mongoos.Schema.Types.ObjectId,
+    // _id: mongoos.Schema.Types.ObjectId,
     id: {
       type: String,
       required: [true, "Please Enter Customer ID"],
