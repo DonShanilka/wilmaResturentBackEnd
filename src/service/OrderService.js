@@ -1,7 +1,23 @@
 const Order = require('../models/ordeModel');
 
 const placeOrder = async (orderData) => {
-  return await Order.create(orderData);
+  try {
+    const added = new Order({
+      id: orderData.orderId,
+      orderDate: orderData.orderDate,
+      customerId: orderData.customerId,
+      total: orderData.total,
+      discount: orderData.discount,
+      subTotal: orderData.subTotal,
+      cash: orderData.cash,
+      balance: orderData.balance
+    })
+    const saved = await Order.create(added);
+    return saved;
+  } catch (error) {
+    console.log("Error in OrderService:", error);
+    throw new Error("Failed to place order");
+  }
 }
 
 const getAllOrders = async () => {
